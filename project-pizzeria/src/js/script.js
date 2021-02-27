@@ -145,31 +145,47 @@
       const thisProduct = this;
 
       // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
-      const formData = utils.serializeFormToObject(thisProduct.form);
+      const formData = utils.serializeFormToObject(thisProduct.form); //Dostęp do formularza z HTML
       console.log('formData', formData);
 
       // set price to default price
-      let price = thisProduct.data.price;
+      let price = thisProduct.data.price; //Zmienna price, path: dane konkretnego obiektu -> jego cena z data.js
 
       // for every category (param)...
-      for(let paramId in thisProduct.data.params) {
+      for(let paramId in thisProduct.data.params) { // Dla każdego parametru w tym obiekcie -> jego parametry z data.js
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
-        const param = thisProduct.data.params[paramId];
-        console.log(paramId, param);
+        const param = thisProduct.data.params[paramId]; // Wejście wewnątrz opcji i wyświetlenie jej danych  latte {label: 'Latte', price: 1, default: true} i innych wariantów
+        console.log(paramId, param); //paramId - klasyfikacja ogólna (np. cofee lub toppings) i ich elementy, natomiast "param" to każdy z tych elementów osobno
 
         // for every option in this category
         for(let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
-          console.log(optionId, option);
+          console.log(optionId, option);// wyświetlenie samej pod opcji z dokładnie jej parametrami np. olives {label: "Olives", price: 2, default: true}
+
+          // check if there is param with a name of paramId in formData and if it includes optionId
+          if(formData[paramId] && formData[paramId].includes(optionId)) {
+            // check if the option is not default
+            if(!option.default) {
+              // add option price to price variable
+              price += option.price;
+            }
+          } else {
+            // check if the option is default
+            if(option.default) {
+              // reduce price variable
+              price -= option.price;
+            }
+          }
+
         }
       }
-
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
 
 
     }
+
 
   }
 
