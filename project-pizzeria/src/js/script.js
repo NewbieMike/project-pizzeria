@@ -88,6 +88,7 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
 
     initAccordion() {
@@ -100,26 +101,26 @@
       /* START: add event listener to clickable trigger on event click */
       clickableTrigger.addEventListener('click', function(event) {
       /* prevent default action for event */
-      event.preventDefault();
-      /* find active product (product that has active class) */
-      const activeProducts = document.querySelectorAll('.product.active');
-      console.log(activeProducts);
-      /* START: loop for each active product */
-      for (let activeProduct of activeProducts){
+        event.preventDefault();
+        /* find active product (product that has active class) */
+        const activeProducts = document.querySelectorAll('.product.active');
+        console.log(activeProducts);
+        /* START: loop for each active product */
+        for (let activeProduct of activeProducts){
         /* START: if activeProduct is not element of thisProduct */
-        if(activeProduct != thisProduct.element){
+          if(activeProduct != thisProduct.element){
           /*  if it is true remove class active from it */
-          activeProduct.classList.remove('active');
+            activeProduct.classList.remove('active');
           /* END: if activeProduct is not element of thisProduct */
-        }
+          }
         /* END: loop for each active product */
-      }
-      /* toggle active class on thisProduct.element */
-      thisProduct.element.classList.toggle('active');
+        }
+        /* toggle active class on thisProduct.element */
+        thisProduct.element.classList.toggle('active');
       /* END: add event listener to clickable trigger on event click */
-    });
+      });
 
-    };
+    }
 
     initOrdersForm(){
       const thisProduct = this;
@@ -139,7 +140,7 @@
         event.preventDefault();
         thisProduct.processOrder();
       });
-    };
+    }
 
     processOrder() {
       const thisProduct = this;
@@ -159,6 +160,10 @@
 
         // for every option in this category
         for(let optionId in param.options) {
+
+          const selectImg = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+          console.log(selectImg);
+
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
           console.log(optionId, option);// wyświetlenie samej pod opcji z dokładnie jej parametrami np. olives {label: "Olives", price: 2, default: true}
@@ -166,11 +171,19 @@
           // check if there is param with a name of paramId in formData and if it includes optionId
           if(formData[paramId] && formData[paramId].includes(optionId)) {
             // check if the option is not default
+
+            //Do opisania!!
+            if (selectImg != null){
+              selectImg.classList.add('active');
+            }
             if(!option.default) {
               // add option price to price variable
               price += option.price;
             }
           } else {
+            if (selectImg != null){
+              selectImg.classList.remove('active');
+            }
             // check if the option is default
             if(option.default) {
               // reduce price variable
