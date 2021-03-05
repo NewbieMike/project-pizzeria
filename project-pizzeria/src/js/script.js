@@ -252,12 +252,45 @@
       const thisProduct = this;
 
       const productSummary = {
-        //const thisProduct.id = ;
-        //const thisProduct.name = ;
-        //const thisProduct.amount = ;
-        //const thisProduct.priceSingle = ;
-        //const thisProduct.price = ;
+
+        id: thisProduct.id,
+        name: thisProduct.data.name,
+        amount: thisProduct.amountWidget.value,
+        priceSingle: thisProduct.priceSingle,
+        price: thisProduct.price,
+        params: thisProduct.prepareCartProductParams(),
       };
+    }
+
+    prepareCartProductParams() {
+      const thisProduct = this;
+
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      const params = {};
+
+      // for very category (param)
+      for(let paramId in thisProduct.data.params) {
+        const param = thisProduct.data.params[paramId];
+
+        // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
+        params[paramId] = {
+          name: param.label,
+          options: {}
+        }
+
+        // for every option in this category
+        for(let optionId in param.options) {
+          const option = param.options[optionId];
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+
+          if(optionSelected) {
+            // option is selected!
+            params[paramId].options[optionId] = option.label;
+          }
+        }
+      }
+
+      return params;
     }
 
     addToCart(){
@@ -354,6 +387,7 @@
 
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = element.querySelector(select.cart.toggleTrigger);
+      thisCart.dom.productList = element.querySelector(select.cart.productList);
     }
 
     initActions(){
@@ -364,7 +398,15 @@
       });
     }
     add(menuProduct){
-      //const thisCart = this;
+      const thisCart = this;
+
+      /* generate HTML based on template */
+      const generatedHTML = templates.menuProduct(menuProduct.data);
+      /* create element using utils.createElementFromHTML */
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+      /* add element to cart */
+      thisCart.dom.productList.appendChild(generatedDOM);
+
 
       console.log('adding product', menuProduct)
     };
