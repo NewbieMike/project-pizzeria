@@ -2,6 +2,7 @@ import {select, classNames, templates} from '/js/settings.js';
 import utils from '/js/utils.js';
 import AmountWidget from './AmountWidget.js';
 
+
 class Product {
   constructor(id, data) {
     const thisProduct = this;
@@ -172,7 +173,7 @@ class Product {
       price: thisProduct.priceElem.innerHTML,
       params: thisProduct.prepareCartProductParams()
     };
-
+    console.log(productSummary);
     return productSummary;
   }
 
@@ -206,13 +207,11 @@ class Product {
 
   addToCart() {
     const thisProduct = this;
-  
-    //app.cart.add(thisProduct.prepareCartProduct());
 
     const event = new CustomEvent('add-to-cart', {
       bubbles: true,
       detail: {
-        Product: thisProduct,
+        Product: thisProduct.prepareCartProduct(),
       }
     });
 

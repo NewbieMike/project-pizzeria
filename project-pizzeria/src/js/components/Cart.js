@@ -1,8 +1,7 @@
 import {select, classNames, settings, templates} from '/js/settings.js';
 import utils from '/js/utils.js';
 import CartProduct from './CartProduct.js';
-import AmountWidget from './AmountWidget.js';
-import Product from './Product.js';
+
 class Cart {
   constructor(element) {
     const thisCart = this;
@@ -38,6 +37,7 @@ class Cart {
     thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
 
     thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
+
   }
 
   initActions() {
@@ -138,8 +138,9 @@ class Cart {
     thisCart.dom.subTotalPrice.innerHTML = subTotalPrice;
     thisCart.dom.totalNumber.innerHTML = totalNumber;
     thisCart.dom.deliveryFee.innerHTML = deliveryFee;
-    thisCart.dom.totalPrice[0].innerHTML = totalPrice;//
-    thisCart.dom.totalPrice[1].innerHTML = totalPrice;//
+    thisCart.dom.totalPrice[0].innerHTML = totalPrice;
+    thisCart.dom.totalPrice[1].innerHTML = totalPrice;
+    
       
   }
 }

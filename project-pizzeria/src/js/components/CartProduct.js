@@ -1,5 +1,5 @@
 import {select} from '/js/settings.js';
-import AmountWidget from './AmountWidget.js';
+import AmountWidget from '/js/components/AmountWidget.js';
 
 class CartProduct {
   constructor(menuProduct, element) {
@@ -8,39 +8,38 @@ class CartProduct {
     thisCartProduct.id = menuProduct.id;
     thisCartProduct.name = menuProduct.name;
     thisCartProduct.amount = menuProduct.amount;
-    thisCartProduct.params = menuProduct.params;
     thisCartProduct.priceSingle = menuProduct.priceSingle;
     thisCartProduct.price = menuProduct.price;
+    thisCartProduct.params = menuProduct.params;
 
     thisCartProduct.getElements(element);
-    thisCartProduct.initCartProduct();
+    thisCartProduct.initAmountWidget();
     thisCartProduct.initActions();
+    //console.log('thisCartProduct', thisCartProduct);
   }
 
   getElements(element) {
     const thisCartProduct = this;
 
     thisCartProduct.dom = {};
-    thisCartProduct.dom.wrapper = element;
 
+    thisCartProduct.dom.wrapper = element;
     thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.amountWidget);
     thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
     thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
     thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
   }
 
-  initCartProduct() {
+  initAmountWidget() {
     const thisCartProduct = this;
 
     thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
-
-    thisCartProduct.dom.amountWidget.addEventListener('updated', function () {
+    thisCartProduct.dom.amountWidget.addEventListener('updated', function() {
       thisCartProduct.amount = thisCartProduct.amountWidget.value;
-
       thisCartProduct.price = thisCartProduct.amount * thisCartProduct.priceSingle;
-
       thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
     });
+
   }
 
   remove() {
@@ -54,35 +53,36 @@ class CartProduct {
     });
 
     thisCartProduct.dom.wrapper.dispatchEvent(event);
-    console.log('Removed');
   }
 
   initActions() {
     const thisCartProduct = this;
-    thisCartProduct.dom.edit.addEventListener('click', function (event) {
+
+    thisCartProduct.dom.edit.addEventListener('click', function(event) {
       event.preventDefault();
+
     });
 
-    thisCartProduct.dom.remove.addEventListener('click', function (event) {
+    thisCartProduct.dom.remove.addEventListener('click', function(event) {
       event.preventDefault();
       thisCartProduct.remove();
+      console.log('remove', thisCartProduct.remove());
     });
   }
 
   getData() {
     const thisCartProduct = this;
 
-    return {
+    const products = {
       id: thisCartProduct.id,
       amount: thisCartProduct.amount,
       price: thisCartProduct.price,
       priceSingle: thisCartProduct.priceSingle,
       name: thisCartProduct.name,
-      params: thisCartProduct.params
+      params: thisCartProduct.params,
     };
-
+    return products;
   }
-
 }
 
 export default CartProduct;
