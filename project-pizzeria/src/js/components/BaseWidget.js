@@ -2,7 +2,7 @@ class BaseWidget {
     constructor(wrapperElement, initialValue) {
         const thisWidget = this;
 
-
+        thisWidget.removeSelection();
         thisWidget.dom = {};
         thisWidget.dom.wrapper = wrapperElement;
 
@@ -53,7 +53,14 @@ class BaseWidget {
     
         thisWidget.dom.wrapper.innerHTML = thisWidget.value;
       };
-
+    removeSelection(){
+        const thisBooking = this;
+        
+        const selectedTables = document.querySelectorAll('.selected');
+        for(let selected of selectedTables){
+            selected.classList.remove('selected');
+        }
+    };
     announce() {
         const thisWidget = this;
     

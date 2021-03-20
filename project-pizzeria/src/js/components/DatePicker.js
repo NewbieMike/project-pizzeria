@@ -29,6 +29,7 @@ class DatePicker extends BaseWidget{
         }
       ],
       onChange: function(selectedDates, dateStr) {
+        thisWidget.removeSelection();
         thisWidget.value = dateStr;
       },
     });
