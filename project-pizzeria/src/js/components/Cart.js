@@ -26,8 +26,8 @@ class Cart {
 
     thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee);
 
-    thisCart.dom.subTotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subTotalPrice);
-
+    thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
+    
     thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
 
     thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
@@ -37,7 +37,6 @@ class Cart {
     thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
 
     thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
-
   }
 
   initActions() {
@@ -69,7 +68,7 @@ class Cart {
       address: thisCart.dom.address.value,
       phone: thisCart.dom.phone.value,
       totalPrice: thisCart.totalPrice,
-      subTotalPrice: thisCart.subTotalPrice,
+      subtotalPrice: thisCart.subtotalPrice,
       totalNumber: thisCart.totalNumber,
       deliveryFee: thisCart.deliveryFee,
       products: []
@@ -92,7 +91,6 @@ class Cart {
   remove(cartProduct) {
     const thisCart = this;
     const productIndex = thisCart.products.indexOf(cartProduct);
-    console.log(productIndex);
     thisCart.products.splice(productIndex, 1);
     cartProduct.dom.wrapper.remove();
     thisCart.update();
@@ -124,24 +122,23 @@ class Cart {
     const thisCart = this;
     const deliveryFee = settings.cart.defaultDeliveryFee;
     let totalNumber = 0;
-    let subTotalPrice = 0;
+    let subtotalPrice = 0;
     let totalPrice = 0;
 
     for (thisCart.CartProduct of thisCart.products) {
       totalNumber += thisCart.CartProduct.amount;
-      subTotalPrice += parseInt(thisCart.CartProduct.price);
-      totalPrice = subTotalPrice + deliveryFee;
+      subtotalPrice += parseInt(thisCart.CartProduct.price);
+      totalPrice = subtotalPrice + deliveryFee;
 
     }
 
     //Add to HTML
-    thisCart.dom.subTotalPrice.innerHTML = subTotalPrice;
+    
+    thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
     thisCart.dom.totalNumber.innerHTML = totalNumber;
     thisCart.dom.deliveryFee.innerHTML = deliveryFee;
     thisCart.dom.totalPrice[0].innerHTML = totalPrice;
     thisCart.dom.totalPrice[1].innerHTML = totalPrice;
-    
-      
   }
 }
 

@@ -22,7 +22,6 @@ class CartProduct {
     const thisCartProduct = this;
 
     thisCartProduct.dom = {};
-
     thisCartProduct.dom.wrapper = element;
     thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.amountWidget);
     thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
@@ -32,7 +31,7 @@ class CartProduct {
 
   initAmountWidget() {
     const thisCartProduct = this;
-
+    console.log(thisCartProduct.dom)
     thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
     thisCartProduct.dom.amountWidget.addEventListener('updated', function() {
       thisCartProduct.amount = thisCartProduct.amountWidget.value;
