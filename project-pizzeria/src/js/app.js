@@ -2,7 +2,7 @@ import {settings, select, classNames} from '/js/settings.js';
 import Product from '/js/components/Product.js';
 import Cart from '/js/components/Cart.js';
 import Booking from '/js/components/Booking.js';
-
+import Home from './components/Home.js';
 const app = {
   initPages: function () { // metogda która jest odpalana po odświeżeniu strony
     const thisApp = this;
@@ -111,10 +111,12 @@ const app = {
     thisApp.initPages();
 
     thisApp.initData();
-    // thisApp.initMenu(); --- zmiana w 9.8 ---
+    
     thisApp.initCart();
 
-    thisApp.initBooking(); // 10.4 wywołujemy metodę initBooking
+    thisApp.initBooking(); 
+
+    thisApp.initHome();
   },
 
   initCart: function() {
@@ -137,7 +139,16 @@ const app = {
     const bookingElem = document.querySelector(select.containerOf.booking); // 10.4 znajdujemy kontener
     thisApp.booking = new Booking(bookingElem); // 10.4 tworzymy nową instancję klasy Booking i przekazujemy do konstruktora kontener bookingElem
   },
+
+  initHome: function(){
+    const thisApp = this;
+
+    const homeElem = document.querySelector(select.containerOf.home);
+    thisApp.home = new Home(homeElem);
+  },
 };
 
 app.init();
 //app.initCart();
+
+export default app;
