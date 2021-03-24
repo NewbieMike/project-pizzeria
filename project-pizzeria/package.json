@@ -48,5 +48,8 @@
     "dependencies": {
         "json-server": "^0.16.3",
         "tiny-slider": "^2.9.3"
-    }
+    },
+    "engines": {
+        "node": "14.x"
+        }
 }

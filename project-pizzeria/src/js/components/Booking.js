@@ -202,19 +202,19 @@ class Booking{
 
     for(let table of thisBooking.dom.tables){
       table.addEventListener('click', (event) => {
-      event.preventDefault();
-      const tableNumber = table.getAttribute('data-table');
-      if(table.classList.contains('booked')){
-        alert('Table number '+ tableNumber + ' not available! Please choose other one.')
-      } else {
-        thisBooking.removeSelection();
-        thisBooking.bookedTable = parseInt(tableNumber);
-        console.log(thisBooking.bookedTable);
-        table.classList.toggle('selected');
-      }
-    })
-    };
-  };
+        event.preventDefault();
+        const tableNumber = table.getAttribute('data-table');
+        if(table.classList.contains('booked')){
+          alert('Table number '+ tableNumber + ' not available! Please choose other one.');
+        } else {
+          thisBooking.removeSelection();
+          thisBooking.bookedTable = parseInt(tableNumber);
+          console.log(thisBooking.bookedTable);
+          table.classList.toggle('selected');
+        }
+      });
+    }
+  }
 
   removeSelection(){
     
@@ -222,7 +222,7 @@ class Booking{
     for(let selected of selectedTables){
       selected.classList.remove('selected');
     }
-  };
+  }
 
   sendBooking(){
     const thisBooking = this;
@@ -240,7 +240,7 @@ class Booking{
       address: thisBooking.dom.address.value,
       phone: thisBooking.dom.phone.value,
     };
-    console.log(payload)
+    console.log(payload);
     for(let starter of thisBooking.dom.starters){
       
       if(starter.checked == true){

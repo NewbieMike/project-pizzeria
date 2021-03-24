@@ -9,7 +9,7 @@ class Home {
     thisHome.render(wrapper);
     thisHome.initWidgets();
     thisHome.initActions();
-    thisHome.navigate()
+    thisHome.navigate();
   }
 
   render(wrapper){
@@ -58,9 +58,9 @@ class Home {
     const thisHome = this;
 
     thisHome.dom.orderOnline.addEventListener('click', function(){
-        app.activatePage('order');
-        window.location.hash = '/#order';
-      });
+      app.activatePage('order');
+      window.location.hash = '/#order';
+    });
 
     thisHome.dom.bookTable.addEventListener('click', function(){
       app.activatePage('booking');

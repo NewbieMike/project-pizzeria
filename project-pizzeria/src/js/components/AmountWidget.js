@@ -21,15 +21,15 @@ class AmountWidget extends BaseWidget{
     thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
     //thisWidget.value = settings.amountWidget.defaultValue; // stąd pobieramy domyślną ilość produktów   -- 9.1
-  };
+  }
 
   //parseValue dziedziczone w całości z klasu BaseWidget!!!
 
   isValid(value){
-      return !isNaN(value)
+    return !isNaN(value)
       && value >= settings.amountWidget.defaultMin 
       && value <= settings.amountWidget.defaultMax;
-  };
+  }
 
 
 
@@ -37,7 +37,7 @@ class AmountWidget extends BaseWidget{
     const thisWidget = this;
 
     thisWidget.dom.input.value = thisWidget.value;
-  };
+  }
   initActions() {
     const thisWidget = this;
 
