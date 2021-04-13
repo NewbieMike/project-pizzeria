@@ -1,0 +1,155 @@
+.home .container {
+  box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.2);
+  margin: 30px auto;
+}
+
+.small-container {
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+.container-content {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #f1f1f1;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.container-content-title {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.container-content-text {
+  opacity: 0;
+  transition: all 1s;
+  text-align: center;
+}
+
+.container-content-description {
+  text-align: center;
+}
+
+.small-container:last-of-type {
+  background-color: tomato;
+
+}
+
+.carousel {
+  height: 50vh;
+  background-color: violet;
+}
+
+.gallery-container {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  min-height: 100vh;
+  grid-gap: 0.5rem;
+}
+
+.img-container{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.img {
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  transition: all 0.4s ease-out;
+  position: relative;
+}
+
+.img:hover {
+  transform: scale(1.2);
+}
+
+.icons i{
+  font-size: 35px;
+  padding: 10px;
+  color: rgb(228, 222, 222);
+  cursor: pointer;
+  transition: all 0.4s ease-out;
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+}
+
+.icons i:last-of-type {
+  left: 65%;
+}
+
+.icons {
+  text-align: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.icons:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#order:hover > #o,
+#first:hover > #p {
+  opacity: 1;
+}
+//Images 
+.order-online,
+.img-1 {
+  background-image: url(/css/assets/pizza-1.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+
+.booking,
+.img-2 {
+  background-image: url(/css/assets/pizza-2.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+
+.img-3 {
+  background-image: url(/css/assets/pizza-3.jpg);
+}
+
+.img-4 {
+  background-image: url(/css/assets/pizza-4.jpg);
+}
+
+.img-5 {
+  background-image: url(/css/assets/pizza-5.jpg);
+}
+
+.img-6 {
+  background-image: url(/css/assets/pizza-6.jpg);
+}
+
+.img-7 {
+  background-image: url(/css/assets/pizza-7.jpg);
+}
+
+.img-8 {
+  background-image: url(/css/assets/pizza-8.jpg);
+}
+
+.img-9 {
+  background-image: url(/css/assets/pizza-9.jpg);
+}
